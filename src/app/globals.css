@@ -1,0 +1,354 @@
+@import "tailwindcss";
+
+:root {
+  --background: #140e0a;
+  --foreground: #f5ead7;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Georgia, serif;
+}
+
+.museum-hall {
+  background:
+    radial-gradient(1200px 500px at 50% -10%, rgba(251, 191, 36, 0.12), transparent 55%),
+    radial-gradient(800px 600px at 10% 80%, rgba(88, 28, 135, 0.18), transparent 50%),
+    radial-gradient(700px 500px at 90% 60%, rgba(153, 27, 27, 0.16), transparent 50%),
+    linear-gradient(180deg, #1c120c 0%, #0c0a09 55%, #050403 100%);
+}
+
+.museum-atmosphere {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px),
+    radial-gradient(circle at 80% 70%, rgba(255, 248, 220, 0.04) 0 1px, transparent 1px);
+  background-size: 180px 180px, 140px 140px;
+  animation: drift 28s linear infinite;
+  z-index: 0;
+}
+
+.museum-vignette {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  box-shadow: inset 0 0 180px 40px rgba(0, 0, 0, 0.55);
+  z-index: 1;
+}
+
+.exhibit-card::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(251, 191, 36, 0.08);
+  border-radius: 1.4rem;
+  pointer-events: none;
+}
+
+.museum-shake {
+  animation: shake 0.55s ease-in-out;
+}
+
+.museum-invert {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+.museum-mirror {
+  transform: scaleX(-1);
+}
+
+.museum-glitch {
+  animation: glitch 0.35s steps(2) infinite;
+}
+
+.museum-rainbow {
+  animation: hue 1.6s linear infinite;
+}
+
+.museum-ghost {
+  filter: grayscale(0.7) brightness(0.75) contrast(1.15);
+}
+
+.museum-curse {
+  box-shadow: inset 0 0 120px 30px rgba(127, 29, 29, 0.45);
+}
+
+.museum-time {
+  animation: rewind 1.8s ease-in-out;
+}
+
+.museum-portal .exhibit-card {
+  animation: swirl 1.4s ease-in-out;
+}
+
+.museum-flash {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+}
+
+.museum-flash.boom {
+  background: radial-gradient(circle, rgba(255, 237, 160, 0.95), rgba(220, 38, 38, 0.4) 40%, transparent 70%);
+  animation: fadeFlash 0.7s ease-out forwards;
+}
+
+.museum-flash.rainbow {
+  background: linear-gradient(120deg, #fb7185, #fbbf24, #34d399, #38bdf8, #c084fc);
+  opacity: 0.35;
+  animation: fadeFlash 0.5s ease-out forwards;
+}
+
+.museum-vortex {
+  pointer-events: none;
+  position: fixed;
+  inset: 20% 30%;
+  border-radius: 999px;
+  background: conic-gradient(from 90deg, #7c3aed, #f472b6, #fbbf24, #7c3aed);
+  opacity: 0.25;
+  filter: blur(18px);
+  animation: spin 1.2s linear infinite;
+  z-index: 5;
+}
+
+.museum-ledger {
+  background: linear-gradient(135deg, rgba(40, 29, 22, 0.9), rgba(12, 10, 9, 0.72));
+  box-shadow: inset 0 1px rgba(255, 244, 210, 0.05), 0 18px 40px rgba(0, 0, 0, 0.16);
+}
+
+.museum-screen-pulse::after {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 35;
+  background: radial-gradient(circle at 50% 50%, rgba(251, 191, 36, 0.28), transparent 24%), linear-gradient(120deg, transparent 35%, rgba(244, 114, 182, 0.13), transparent 65%);
+  animation: museumPulse 0.72s ease-out forwards;
+}
+
+.museum-big-popup {
+  animation: popupSlam 1.55s cubic-bezier(.12,.8,.16,1) forwards;
+}
+
+.museum-scene {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 34;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  animation: sceneFade 2.4s ease-out forwards;
+}
+
+.museum-scene-art {
+  display: flex;
+  max-width: min(86vw, 38rem);
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  border: 2px solid rgba(255, 238, 181, 0.65);
+  border-radius: 2rem;
+  background: rgba(10, 7, 6, 0.9);
+  padding: 2rem 3rem;
+  text-align: center;
+  box-shadow: 0 0 80px rgba(251, 191, 36, 0.35);
+  animation: scenePop 0.5s cubic-bezier(.1,.9,.2,1);
+}
+
+.museum-scene-art span { font-size: clamp(3rem, 12vw, 7rem); line-height: 1; }
+.museum-scene-art b { font-family: var(--font-cinzel), Georgia, serif; font-size: clamp(1.25rem, 4vw, 2.4rem); color: #fde68a; }
+.museum-scene-art small { color: #d6d3d1; font-size: 0.8rem; }
+.museum-scene-art button { pointer-events: auto; margin-top: 0.7rem; border: 1px solid #fde68a; border-radius: 999px; padding: 0.65rem 1rem; color: #1c120c; background: #fde68a; font-weight: 800; }
+
+.museum-spectacle {
+  pointer-events: none;
+  position: fixed;
+  left: 50%;
+  top: 14%;
+  z-index: 45;
+  display: grid;
+  justify-items: center;
+  gap: .15rem;
+  min-width: 13rem;
+  transform: translateX(-50%);
+  color: hsl(var(--spectacle-hue) 95% 78%);
+  text-align: center;
+  text-shadow: 0 0 22px hsl(var(--spectacle-hue) 95% 55%);
+  animation: spectacleBase 1.65s ease-out forwards;
+}
+.museum-spectacle span { font-size: 3rem; line-height: 1; }
+.museum-spectacle b { font-size: clamp(.82rem, 2vw, 1.1rem); letter-spacing: .16em; text-transform: uppercase; }
+.museum-spectacle i { font-size: .58rem; color: #fff7ed; opacity: .75; }
+.spectacle-0 { animation: tornado 1.65s ease-out forwards; }
+.spectacle-1 { animation: meteor 1.65s ease-out forwards; }
+.spectacle-2 { animation: lightning 1.65s steps(2) forwards; }
+.spectacle-3 { animation: blizzard 1.65s ease-in forwards; }
+.spectacle-4 { animation: orbit 1.65s cubic-bezier(.2,.9,.2,1) forwards; }
+.spectacle-5 { animation: wobbleRun 1.65s ease-in-out forwards; }
+.spectacle-6 { animation: blackHole 1.65s ease-in forwards; }
+.spectacle-7 { animation: matrixDrop 1.65s linear forwards; }
+.spectacle-8 { animation: vhsJump 1.65s steps(3) forwards; }
+.spectacle-9 { animation: rainbowSlide 1.65s ease-in-out forwards; }
+.spectacle-10 { animation: pixelPop 1.65s steps(4) forwards; }
+.spectacle-11 { animation: spotlightRise 1.65s cubic-bezier(.1,.9,.2,1) forwards; }
+.scene-emergency { background: repeating-linear-gradient(135deg, rgba(239,68,68,.35) 0 28px, rgba(0,0,0,.3) 28px 56px); }
+.scene-emergency .museum-scene-art { animation: emergencyBlink .32s steps(2) 6; }
+.scene-countdown { background: radial-gradient(circle, rgba(239,68,68,.65), transparent 48%); }
+.scene-countdown .museum-scene-art span { animation: boomScale 1.4s ease-in-out; }
+.scene-speed { background: repeating-linear-gradient(110deg, transparent 0 24px, rgba(56,189,248,.2) 25px 29px); }
+.scene-speed .museum-scene-art { animation: speedDash .55s ease-out; }
+.scene-brain { background: radial-gradient(circle, rgba(192,132,252,.42), transparent 52%); }
+.scene-brain .museum-scene-art span { animation: brainPulse .45s ease-in-out 5; }
+.scene-door { background: linear-gradient(90deg, rgba(60,35,21,.93) 0 48%, rgba(0,0,0,.75) 49% 51%, rgba(60,35,21,.93) 52%); }
+.scene-door .museum-scene-art { border-color: #a78bfa; }
+.scene-world .museum-scene-art span, .scene-ai .museum-scene-art span { animation: spin 2s linear infinite; }
+.scene-grass .museum-scene-art { transform-origin: bottom; animation: grassPeek .65s ease-in-out; }
+.scene-money { background: radial-gradient(circle, rgba(52,211,153,.25), transparent 55%); }
+
+@keyframes sceneFade { 0%, 74% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes scenePop { from { transform: scale(.2) rotate(-10deg); } to { transform: scale(1) rotate(1deg); } }
+@keyframes emergencyBlink { 50% { filter: invert(1); transform: scale(1.05); } }
+@keyframes boomScale { 45% { transform: scale(1.7) rotate(15deg); } }
+@keyframes speedDash { 0% { transform: translateX(-110vw) skewX(-18deg); } 100% { transform: translateX(0); } }
+@keyframes brainPulse { 50% { transform: scale(1.22) rotate(-5deg); filter: hue-rotate(80deg); } }
+@keyframes grassPeek { 0%,100% { transform: translateY(120%); } 40% { transform: translateY(0); } }
+@keyframes spectacleBase { 0% { opacity: 0; transform:translateX(-50%) scale(.2); } 25%,70% { opacity:1; transform:translateX(-50%) scale(1); } 100% { opacity:0; transform:translateX(-50%) scale(.8); } }
+@keyframes tornado { 0% {opacity:0; transform:translate(-50%,25vh) rotate(0) scale(.2)} 70% {opacity:1; transform:translate(-50%,-4vh) rotate(960deg) scale(1.1)} 100% {opacity:0; transform:translate(-50%,-22vh) rotate(1400deg) scale(.2)} }
+@keyframes meteor { 0%{opacity:0;transform:translate(-150vw,-20vh) rotate(-35deg)} 60%{opacity:1} 100%{opacity:0;transform:translate(60vw,45vh) rotate(-35deg) scale(2)} }
+@keyframes lightning { 0%,35%,38%,62%,65%,100%{opacity:0} 36%,63%{opacity:1;transform:translateX(-50%) scale(1.8)} }
+@keyframes blizzard { from{opacity:0;transform:translate(-50%,-30vh) rotate(-30deg)} 20%{opacity:1} to{opacity:0;transform:translate(30vw,80vh) rotate(640deg)} }
+@keyframes orbit { 0%{opacity:0;transform:translate(-50%,0) scale(.1)} 60%{opacity:1;transform:translate(18vw,-12vh) rotate(500deg)} 100%{opacity:0;transform:translate(-50%,0) rotate(900deg) scale(.2)} }
+@keyframes wobbleRun { 0%{opacity:0;transform:translateX(-50%) scale(.4)} 25%,75%{opacity:1;transform:translateX(calc(-50% + 24vw)) rotate(12deg)} 50%{transform:translateX(calc(-50% - 24vw)) rotate(-12deg)} 100%{opacity:0;transform:translateX(-50%) scale(.5)} }
+@keyframes blackHole { 0%{opacity:0;transform:translateX(-50%) scale(2.8) rotate(0)} 55%{opacity:1;transform:translateX(-50%) scale(.1) rotate(720deg)} 100%{opacity:0;transform:translateX(-50%) scale(0)} }
+@keyframes matrixDrop { 0%{opacity:0;transform:translate(-50%,-30vh)} 15%,75%{opacity:1} 100%{opacity:0;transform:translate(-50%,70vh)} }
+@keyframes vhsJump { 0%{opacity:0;transform:translateX(-50%)} 30%{opacity:1;transform:translateX(calc(-50% - 16px)) skewX(20deg)} 50%{transform:translateX(calc(-50% + 20px)) skewX(-20deg)} 100%{opacity:0;transform:translateX(-50%)} }
+@keyframes rainbowSlide { 0%{opacity:0;filter:hue-rotate(0);transform:translateX(-120vw)} 60%{opacity:1;filter:hue-rotate(600deg)} 100%{opacity:0;filter:hue-rotate(1000deg);transform:translateX(80vw)} }
+@keyframes pixelPop { 0%{opacity:0;transform:translateX(-50%) scale(0)} 45%{opacity:1;transform:translateX(-50%) scale(2.4)} 100%{opacity:0;transform:translateX(-50%) scale(.1)} }
+@keyframes spotlightRise { 0%{opacity:0;transform:translate(-50%,25vh) scale(.2)} 45%{opacity:1;transform:translate(-50%,-4vh) scale(1.35)} 100%{opacity:0;transform:translate(-50%,-28vh) scale(.6)} }
+
+.museum-stamp {
+  animation: stampSpin 0.55s cubic-bezier(.1,.9,.2,1) both;
+}
+
+.confetti-bit,
+.soap-bubble {
+  pointer-events: none;
+  position: fixed;
+  top: -12px;
+  z-index: 40;
+  animation: fall 2.6s linear forwards;
+}
+
+.confetti-bit {
+  width: 10px;
+  height: 16px;
+  border-radius: 2px;
+}
+
+.soap-bubble {
+  width: 22px;
+  height: 22px;
+  border: 2px solid;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.7), transparent 50%);
+}
+
+@keyframes drift {
+  from { background-position: 0 0, 0 0; }
+  to { background-position: 180px 140px, -120px 90px; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-10px, 4px) rotate(-0.6deg); }
+  40% { transform: translate(12px, -6px) rotate(0.7deg); }
+  60% { transform: translate(-8px, 3px); }
+  80% { transform: translate(9px, -2px); }
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); filter: none; }
+  25% { transform: translate(-3px, 1px); filter: hue-rotate(90deg); }
+  50% { transform: translate(3px, -2px); }
+  75% { transform: translate(-2px, 0); filter: hue-rotate(-40deg); }
+}
+
+@keyframes hue {
+  from { filter: hue-rotate(0deg); }
+  to { filter: hue-rotate(360deg); }
+}
+
+@keyframes rewind {
+  0% { filter: none; }
+  40% { filter: sepia(0.8) contrast(1.2); }
+  100% { filter: none; }
+}
+
+@keyframes swirl {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(8deg) scale(0.96); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+
+@keyframes fadeFlash {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(280deg);
+    opacity: 0;
+  }
+}
+
+@keyframes museumPulse {
+  0% { opacity: 0; transform: scale(0.6); }
+  30% { opacity: 1; transform: scale(1.08); }
+  100% { opacity: 0; transform: scale(1.2); }
+}
+
+@keyframes popupSlam {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.25) rotate(-9deg); }
+  18% { opacity: 1; transform: translate(-50%, -50%) scale(1.08) rotate(2deg); }
+  36%, 72% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(-1deg); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(0.88) rotate(1deg); }
+}
+
+@keyframes stampSpin {
+  0% { opacity: 0; transform: scale(2.5) rotate(-18deg); }
+  100% { opacity: 1; transform: scale(1) rotate(2deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .museum-atmosphere,
+  .museum-shake,
+  .museum-glitch,
+  .museum-rainbow,
+  .museum-time,
+  .museum-portal .exhibit-card,
+  .confetti-bit,
+  .soap-bubble {
+    animation: none;
+  }
+
+  .museum-big-popup,
+  .museum-stamp {
+    animation: none;
+  }
+}
